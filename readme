@@ -6,3 +6,6 @@
 // install npm install ts-node --save-dev
 
 // :Promise<any> -- Promise to return exactly what we want <any> any type
+// to install github - git init
+// - git add.
+// - git commit -m "type the reason"
