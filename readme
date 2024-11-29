@@ -1,0 +1,8 @@
+// npm init to initialise project
+// npm i --save-dev typescript to install typescript
+// craete file ts.config.json on the project directory
+// install npm i  express @types/express --save-dev
+
+// install npm install ts-node --save-dev
+
+// :Promise<any> -- Promise to return exactly what we want <any> any type
