@@ -6,7 +6,7 @@ import { User } from "../schema/user.schema";
 import {EmailSender, EmailOptions} from '../email/email';
 
  export const signup = async (req: Request, res: Response) :Promise<any> => {
-  const { email, password } = req.body;
+  const { email, password,surname, firstname,employername  } = req.body;
 
   if (!email || !password) {
     return res.status(400).json({ message: 'Email and password are required' });
@@ -24,8 +24,8 @@ import {EmailSender, EmailOptions} from '../email/email';
     const saltRounds = 10;
     const hashPassword = await bcrypt.hash(password,saltRounds);
     // Create new user
-    const newUser = User.create({ email, password: hashPassword });
-    await User.save(newUser);
+    const newUser = await User.create({ email, password: hashPassword , surname, firstname, employername}).save();
+    //await User.save(newUser);
 
     res.status(201).json({
       success: true,
@@ -119,6 +119,30 @@ export const forgetPassword = async (req: Request, res: Response) :Promise<any>=
   emailSender.sendEmail(emailOptions);
 
   res.status(200).json({ message: 'check your email for reset password OTP' });
+}
+
+
+export const getUser = async(req: Request, res:Response): Promise<any> => {
+  const { email} = req.body
+
+  const user = await User.findOne({ where: { email}})
+
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: 'User not found',
+    });
+  }
+
+  const firstname = user?.firstname
+  const employername = user?.employername
+
+  return res.status(200).json({
+    success: true,
+      firstname, 
+      employername
+    // message: `Mr ${firstname}  is working with ${employername}`
+  })
 }
 
 

@@ -25,6 +25,9 @@ export const swaggerDefinition = {
                   properties: {
                     email: { type: 'string' },
                     password: { type: 'string' },
+                    surname: { type: 'string' },
+                    firstname: { type: 'string' },
+                    employername: { type: 'string' },
                   },
                 },
               },
@@ -68,6 +71,31 @@ export const swaggerDefinition = {
       '/api/forget-password': {
         post: {
           summary: 'When a user forget their password',
+          tags: ['Auth'],
+          requestBody: {
+            required: true,
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    email: { type: 'string' },
+                  },
+                },
+              },
+            },
+          },
+          responses: {
+            '200': {
+              description: 'Successful operation',
+            },
+          },
+        },
+      },
+
+      '/api/get-user': {
+        post: {
+          summary: 'Get a user by email',
           tags: ['Auth'],
           requestBody: {
             required: true,

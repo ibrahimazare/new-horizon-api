@@ -8,7 +8,7 @@
 
 import { Router } from 'express';
 
-import { signup, login, forgetPassword } from '../controller/auth.controller';
+import { signup, login, forgetPassword, getUser } from '../controller/auth.controller';
 
 
 // import { signup } from '../controller/auth-controller';
@@ -19,6 +19,7 @@ import { signup, login, forgetPassword } from '../controller/auth.controller';
 router.post('/sign-up', signup);
 router.post('/user-login', login);
 router.post('/forgot-password', forgetPassword);
+router.post('/get-user', getUser)
 
 
 
