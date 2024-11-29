@@ -9,3 +9,4 @@
 // to install github - git init
 // - git add.
 // - git commit -m "type the reason"
+// - git push origin main
